@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Configuration.Extensions
+namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions
 {
     public static class ModelStateExtensions
     {

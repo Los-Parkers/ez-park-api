@@ -1,8 +1,8 @@
 ﻿using ez_park_platform.Shared.Domain.Repositories;
-using ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Configuration;
+using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Repositories
+namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Repositories
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {

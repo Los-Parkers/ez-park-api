@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Configuration.Extensions
+namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions
 {
     public static class ModelBuilderExtension
     {
         public static void UseSnakeCaseNamingConvention(this ModelBuilder builder)
         {
-            foreach(var entity in builder.Model.GetEntityTypes()) {
+            foreach (var entity in builder.Model.GetEntityTypes())
+            {
                 var tableName = entity.GetTableName();
                 if (!string.IsNullOrEmpty(tableName)) entity.SetTableName(tableName.ToSnakeCase());
 
@@ -15,10 +16,10 @@ namespace ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Conf
                     property.SetColumnName(property.GetColumnName().ToSnakeCase());
                 }
 
-                foreach(var key in entity.GetKeys())
+                foreach (var key in entity.GetKeys())
                 {
                     var keyName = key.GetName();
-                    if(!string.IsNullOrEmpty(keyName)) key.SetName(keyName.ToSnakeCase());
+                    if (!string.IsNullOrEmpty(keyName)) key.SetName(keyName.ToSnakeCase());
                 }
                 foreach (var foreignKey in entity.GetForeignKeys())
                 {
@@ -31,7 +32,7 @@ namespace ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Conf
                     if (!string.IsNullOrEmpty(indexName)) index.SetDatabaseName(indexName.ToSnakeCase());
                 }
             }
-            
+
         }
     }
 }
