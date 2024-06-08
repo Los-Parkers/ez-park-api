@@ -24,6 +24,8 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             userEntity.ToTable("User");
             userEntity.HasKey(u => u.Id);
             userEntity.Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
+            userEntity.Property(u => u.Email).IsRequired();
+            userEntity.Property(u => u.Password).IsRequired();
             userEntity.OwnsOne(u => u.UserName, n =>
             {
                 n.WithOwner().HasForeignKey("Id");
