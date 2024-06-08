@@ -6,6 +6,6 @@ namespace ez_park_platform.Users.Interfaces.REST.Transformers
     public static class UserResourceFromEntityAssembler
     {
         public static UserResource ToResourceFromEntity(User entity)
-            => new(entity.Id, entity.FullName, entity.Phone, entity.Dni, entity.DateOfBirth);
+            => new(entity.Id, entity.Email, entity.Email, entity.FullName, entity.Phone, entity.Dni, entity.DateOfBirth);
     }
 }

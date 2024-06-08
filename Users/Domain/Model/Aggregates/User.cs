@@ -29,8 +29,8 @@ namespace ez_park_platform.Users.Domain.Model.Aggregates
 
         public User(CreateUserCommand command)
         {
-            this.Email = string.Empty;
-            this.Password = string.Empty;
+            this.Email = command.Email;
+            this.Password = command.Password;
             this.UserName = new(command.FirstName, command.LastName);
             this.Dni = command.Dni;
             this.Phone = command.Phone;
