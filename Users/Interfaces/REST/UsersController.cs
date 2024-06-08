@@ -34,6 +34,15 @@ namespace ez_park_platform.Users.Interfaces.REST
             return Ok(userResource);
         }
 
+        [HttpGet("dni/{dni}")]
+        public async Task<ActionResult> GetUserByDni(string dni)
+        {
+            User? user = await userQueryService.Handle(new GetUserByDniQuery(dni));
+            if (user is null) return NotFound();
+
+            return Ok(user);
+        }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult> GetUserById(int id)
         {

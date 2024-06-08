@@ -19,7 +19,7 @@ namespace ez_park_platform.EzPark.Application.Internal.QueryServices
 
         public async Task<User?> Handle(GetUserByDniQuery query)
         {
-            return await userRepository.FindUserByDni(query.Dni);
+            return await userRepository.FindByDniAsync(query.Dni);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ez_park_platform.Users.Infraestructure.Persistance.EFC.Repositories
     {
         public UserRepository(AppDbContext context) : base(context) { }
 
-        public async Task<User?> FindUserByDni(string Dni)
+        public async Task<User?> FindByDniAsync(string Dni)
         {
             return await Context.Set<User>().FirstOrDefaultAsync(u => u.Dni == Dni);
         }

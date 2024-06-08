@@ -5,6 +5,6 @@ namespace ez_park_platform.Users.Domain.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        Task<User?> FindUserByDni(string Dni);
+        Task<User?> FindByDniAsync(string Dni);
     }
 }
