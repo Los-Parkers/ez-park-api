@@ -1,4 +1,6 @@
-﻿namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions
+﻿using Humanizer;
+
+namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions
 {
     public static class StringExtensions
     {
@@ -25,6 +27,11 @@
                     }
                 }
             }
+        }
+
+        public static string ToPlural(this string value)
+        {
+            return value.Pluralize(inputIsKnownToBeSingular: false);
         }
     }
 }

@@ -4,12 +4,12 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.E
 {
     public static class ModelBuilderExtension
     {
-        public static void UseSnakeCaseNamingConvention(this ModelBuilder builder)
+        public static void UseSnakeCaseWithPluralizedTableNamingConvention(this ModelBuilder builder)
         {
             foreach (var entity in builder.Model.GetEntityTypes())
             {
                 var tableName = entity.GetTableName();
-                if (!string.IsNullOrEmpty(tableName)) entity.SetTableName(tableName.ToSnakeCase());
+                if (!string.IsNullOrEmpty(tableName)) entity.SetTableName(tableName.ToPlural().ToSnakeCase());
 
                 foreach (var property in entity.GetProperties())
                 {

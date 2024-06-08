@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-
+﻿using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions;
 using Microsoft.EntityFrameworkCore;
-using ez_park_platform.Shared.Infrastructure.Interfaces.Persistence.EPC.Configuration.Extensions;
-
 
 namespace ez_park_platform.Shared.Infrastructure.Interfaces.ASP.Configuration.Extensions
 {

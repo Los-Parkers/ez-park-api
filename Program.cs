@@ -1,12 +1,12 @@
-using ez_park_platform.EzPark.Application.Domain.Repositories;
-using ez_park_platform.EzPark.Application.Domain.Services;
-using ez_park_platform.EzPark.Application.Infraestructure.Repositories;
 using ez_park_platform.EzPark.Application.Internal.CommandServices;
 using ez_park_platform.EzPark.Application.Internal.QueryServices;
 using ez_park_platform.Shared.Domain.Repositories;
 using ez_park_platform.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration;
 using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Repositories;
+using ez_park_platform.Users.Domain.Repositories;
+using ez_park_platform.Users.Domain.Services;
+using ez_park_platform.Users.Infraestructure.Persistance.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -62,9 +62,9 @@ builder.Services.AddControllers(
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // News Bounded Context Injection Configuration
-builder.Services.AddScoped<IUserSourceRepository, UserSourceRepository>();
-builder.Services.AddScoped<IUserSourceCommandService, UserSourceCommandService>();
-builder.Services.AddScoped<IUserSourceQueryService, UserSourceQueryService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserCommandService, UserCommandService>();
+builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 
 //Configure database Context and Logging Levels
 var app = builder.Build();
