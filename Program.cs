@@ -7,6 +7,9 @@ using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Repositories;
 using ez_park_platform.Users.Domain.Repositories;
 using ez_park_platform.Users.Domain.Services;
 using ez_park_platform.Users.Infraestructure.Persistance.EFC.Repositories;
+using ez_park_platform.Parkings.Domain.Repositories;
+using ez_park_platform.Parkings.Domain.Services;
+using ez_park_platform.Parkings.Infraestructure.Persistance.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -65,6 +68,11 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+
+// Parkings Bounded Context Configuration
+builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
+builder.Services.AddScoped<IParkingCommandService, ParkingCommandService>();
+builder.Services.AddScoped<IParkingQueryService, ParkingQueryService>();
 
 //Configure database Context and Logging Levels
 var app = builder.Build();

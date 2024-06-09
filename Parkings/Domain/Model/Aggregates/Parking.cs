@@ -8,16 +8,16 @@ namespace ez_park_platform.Parkings.Domain.Model.Aggregates
 
         public string Address { get; set; }
 
-        public float Width { get; set; }
-        public float Length { get; set; }
-        public float Height { get; set; }
+        public double Width { get; set; }
+        public double Length { get; set; }
+        public double Height { get; set; }
 
         public int MaxCapacity { get; set; }
         public int AvailableCapacity { get; set; }
-        public float Price { get; set; }
-        public float Rating { get; set; }
+        public double Price { get; set; }
+        public double Rating { get; set; }
 
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Description { get; set; }
         
 
@@ -31,7 +31,7 @@ namespace ez_park_platform.Parkings.Domain.Model.Aggregates
             this.AvailableCapacity = default;
             this.Price = default;
             this.Rating = default;
-            this.Phone = default;
+            this.Phone = string.Empty;
             this.Description = string.Empty;
 
         }
@@ -41,7 +41,7 @@ namespace ez_park_platform.Parkings.Domain.Model.Aggregates
             this.Address = command.Address;
             this.Width = command.Width;
             this.Length = command.Length;
-            this.Height = command.Heigth;
+            this.Height = command.Height;
             this.MaxCapacity = command.MaxCapacity;
             this.AvailableCapacity = command.AvailableCapacity;
             this.Price = command.Price;

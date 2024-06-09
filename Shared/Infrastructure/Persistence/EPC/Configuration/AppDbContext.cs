@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
+using ez_park_platform.Parkings.Domain.Model.Aggregates;
 using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions;
 using ez_park_platform.Users.Domain.Model.Aggregates;
 
@@ -35,6 +36,24 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             userEntity.Property(u => u.Dni).IsRequired().HasMaxLength(8);
             userEntity.Property(u => u.Phone).IsRequired().HasMaxLength(9);
             userEntity.Property(u => u.DateOfBirth).IsRequired();
+            
+            //parking entity
+            var parkingEntity = builder.Entity<Parking>();
+            
+            parkingEntity.ToTable("Parking");
+            parkingEntity.HasKey(p => p.Id);
+            parkingEntity.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+            parkingEntity.Property(p => p.Address).IsRequired();
+            parkingEntity.Property(p => p.Width).IsRequired();
+            parkingEntity.Property(p => p.Length).IsRequired();
+            parkingEntity.Property(p => p.Height).IsRequired();
+            parkingEntity.Property(p => p.MaxCapacity).IsRequired();
+            parkingEntity.Property(p => p.AvailableCapacity).IsRequired();
+            parkingEntity.Property(p => p.Price).IsRequired();
+            parkingEntity.Property(p => p.Rating).IsRequired();
+            parkingEntity.Property(p => p.Phone).IsRequired();
+            parkingEntity.Property(p => p.Description).IsRequired();
+            
 
 
             builder.UseSnakeCaseWithPluralizedTableNamingConvention();
