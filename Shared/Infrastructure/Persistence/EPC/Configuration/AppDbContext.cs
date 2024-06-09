@@ -3,6 +3,7 @@ using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using ez_park_platform.Parkings.Domain.Model.Aggregates;
 using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions;
 using ez_park_platform.Users.Domain.Model.Aggregates;
+using ez_park_platform.Reservations.Domain.Model.Aggregates;
 
 namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
 {
@@ -19,7 +20,7 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             base.OnModelCreating(builder);
             /* Entities to be created */
 
-
+            //user entity
             var userEntity = builder.Entity<User>();
 
             userEntity.ToTable("User");
@@ -53,8 +54,18 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             parkingEntity.Property(p => p.Rating).IsRequired();
             parkingEntity.Property(p => p.Phone).IsRequired();
             parkingEntity.Property(p => p.Description).IsRequired();
-            
 
+            //booking entity
+            var bookingEntity = builder.Entity<Booking>();
+
+            bookingEntity.ToTable("Booking");
+            bookingEntity.HasKey(p => p.Id);
+            bookingEntity.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+            bookingEntity.Property(p => p.HoursRegistered).IsRequired();
+            bookingEntity.Property(p => p.TotalPrice).IsRequired();
+            bookingEntity.Property(p => p.StartHour).IsRequired().HasMaxLength(8);
+            bookingEntity.Property(p => p.EndHour).IsRequired().HasMaxLength(8);
+            bookingEntity.Property(p => p.BookingStatus);
 
             builder.UseSnakeCaseWithPluralizedTableNamingConvention();
         }
