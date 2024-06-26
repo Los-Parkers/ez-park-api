@@ -5,6 +5,6 @@ namespace ez_park_platform.Parkings.Domain.Repositories
 {
     public interface IParkingRepository : IBaseRepository<Parking>
     {
-       
+        Task<List<Parking>> FindByUserIdAsync(int userid);
     }
 }

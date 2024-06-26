@@ -11,14 +11,11 @@ namespace ez_park_platform.Parkings.Domain.Model.Aggregates
         public double Width { get; set; }
         public double Length { get; set; }
         public double Height { get; set; }
-
-        public int MaxCapacity { get; set; }
-        public int AvailableCapacity { get; set; }
         public double Price { get; set; }
-        public double Rating { get; set; }
-
         public string Phone { get; set; }
         public string Description { get; set; }
+        
+        public int UserId { get; set; }
         
 
         protected Parking()
@@ -27,12 +24,10 @@ namespace ez_park_platform.Parkings.Domain.Model.Aggregates
             this.Width = default;
             this.Length = default;
             this.Height = default;
-            this.MaxCapacity = default;
-            this.AvailableCapacity = default;
             this.Price = default;
-            this.Rating = default;
             this.Phone = string.Empty;
             this.Description = string.Empty;
+            this.UserId = default;
 
         }
 
@@ -42,12 +37,10 @@ namespace ez_park_platform.Parkings.Domain.Model.Aggregates
             this.Width = command.Width;
             this.Length = command.Length;
             this.Height = command.Height;
-            this.MaxCapacity = command.MaxCapacity;
-            this.AvailableCapacity = command.AvailableCapacity;
             this.Price = command.Price;
-            this.Rating = command.Rating;
             this.Phone = command.Phone;
             this.Description = command.Description;
+            this.UserId = command.UserId;
         }
     }
 }

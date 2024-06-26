@@ -48,12 +48,10 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             parkingEntity.Property(p => p.Width).IsRequired();
             parkingEntity.Property(p => p.Length).IsRequired();
             parkingEntity.Property(p => p.Height).IsRequired();
-            parkingEntity.Property(p => p.MaxCapacity).IsRequired();
-            parkingEntity.Property(p => p.AvailableCapacity).IsRequired();
             parkingEntity.Property(p => p.Price).IsRequired();
-            parkingEntity.Property(p => p.Rating).IsRequired();
             parkingEntity.Property(p => p.Phone).IsRequired();
             parkingEntity.Property(p => p.Description).IsRequired();
+            parkingEntity.Property(p => p.UserId).IsRequired();
 
             //booking entity
             var bookingEntity = builder.Entity<Booking>();

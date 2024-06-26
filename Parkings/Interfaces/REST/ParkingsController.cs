@@ -12,8 +12,8 @@ namespace ez_park_platform.Parkings.Interfaces.REST
     [Route("api/v1/[controller]")]
     [Produces(MediaTypeNames.Application.Json)]
     public class ParkingsController(
-        IParkingCommandService parkingCommandService,
-        IParkingQueryService parkingQueryService)
+            IParkingCommandService parkingCommandService,
+            IParkingQueryService parkingQueryService)
         : ControllerBase
     {
         [HttpPost]
@@ -23,7 +23,7 @@ namespace ez_park_platform.Parkings.Interfaces.REST
             {
                 var command = CreateParkingCommandFromResourceAssembler.ToCommandFromResource(resource);
                 Parking? parking = await parkingCommandService.Handle(command);
-                if (parking is null) 
+                if (parking is null)
                 {
                     return BadRequest("Failed to create parking.");
                 }
@@ -43,12 +43,35 @@ namespace ez_park_platform.Parkings.Interfaces.REST
         public async Task<ActionResult> GetAllParkings()
         {
             IEnumerable<Parking> parkings = await parkingQueryService.Handle(new GetAllParkingsQuery());
-            IEnumerable<ParkingResource> parkingResource = parkings.Select(ParkingResourceFromEntityAssembler.ToResourceFromEntity);
+            IEnumerable<ParkingResource> parkingResource =
+                parkings.Select(ParkingResourceFromEntityAssembler.ToResourceFromEntity);
             return Ok(parkingResource);
         }
 
+        [HttpGet("userid/{userId}")]
+        public async Task<ActionResult> GetParkingByUserId(int userId)
+        {
+            try
+            {
+                List<Parking> parkings = await parkingQueryService.Handle(new GetParkingsByUserId(userId));
+                if (parkings == null || parkings.Count == 0)
+                {
+                    return NotFound($"No parkings found for user ID {userId}");
+                }
 
-        [HttpGet("{id:int}")]
+                List<ParkingResource> parkingResources = parkings.Select(ParkingResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+                return Ok(parkingResources);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine(ex);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+
+    [HttpGet("{id:int}")]
         public async Task<ActionResult> GetParkingById(int id)
         {
             Parking? parking = await parkingQueryService.Handle(new GetParkingByIdQuery(id));

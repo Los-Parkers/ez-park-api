@@ -10,6 +10,10 @@ namespace ez_park_platform.Parkings.Infraestructure.Persistance.EFC.Repositories
     public class ParkingRepository : BaseRepository<Parking>, IParkingRepository
     {
         public ParkingRepository(AppDbContext context) : base(context) { }
-        
+
+        public async Task<List<Parking>> FindByUserIdAsync(int userid)
+        {
+            return await Context.Set<Parking>().Where(u => u.UserId == userid).ToListAsync();
+        }
     }
 }
