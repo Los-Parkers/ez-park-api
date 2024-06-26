@@ -12,6 +12,11 @@ using ez_park_platform.Parkings.Domain.Services;
 using ez_park_platform.Parkings.Infraestructure.Persistance.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ez_park_platform.Reservations.Domain.Repositories;
+using ez_park_platform.Reservations.Infraestructure.EFC.Repositories;
+using ez_park_platform.Reservations.Domain.Services;
+using ez_park_platform.Reservations.Application.Internal.CommandServices;
+using ez_park_platform.Reservations.Application.Internal.QueryServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,7 +69,7 @@ builder.Services.AddControllers(
 // Shared Bounded Context Injection Configuration
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-// News Bounded Context Injection Configuration
+// Authentication Bounded Context Injection Configuration
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
@@ -73,6 +78,11 @@ builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
 builder.Services.AddScoped<IParkingCommandService, ParkingCommandService>();
 builder.Services.AddScoped<IParkingQueryService, ParkingQueryService>();
+
+// Reservations Bounded Context Configuration
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingCommandService, BookingComandService>();
+builder.Services.AddScoped<IBookingQueryService, BookingQueryService>();
 
 //Configure database Context and Logging Levels
 var app = builder.Build();
