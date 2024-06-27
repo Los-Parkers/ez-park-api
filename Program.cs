@@ -7,9 +7,9 @@ using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Repositories;
 using ez_park_platform.Users.Domain.Repositories;
 using ez_park_platform.Users.Domain.Services;
 using ez_park_platform.Users.Infraestructure.Persistance.EFC.Repositories;
-using ez_park_platform.Parkings.Domain.Repositories;
-using ez_park_platform.Parkings.Domain.Services;
-using ez_park_platform.Parkings.Infraestructure.Persistance.EFC.Repositories;
+using ez_park_platform.ParkingManagement.Domain.Repositories;
+using ez_park_platform.ParkingManagement.Domain.Services;
+using ez_park_platform.ParkingManagement.Infraestructure.Persistance.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ez_park_platform.Reservations.Domain.Repositories;
@@ -79,10 +79,15 @@ builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
 builder.Services.AddScoped<IParkingCommandService, ParkingCommandService>();
 builder.Services.AddScoped<IParkingQueryService, ParkingQueryService>();
 
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewCommandService, ReviewCommandService>();
+builder.Services.AddScoped<IReviewQueryService, ReviewQueryService>();
+
 // Reservations Bounded Context Configuration
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingCommandService, BookingComandService>();
 builder.Services.AddScoped<IBookingQueryService, BookingQueryService>();
+
 
 //Configure database Context and Logging Levels
 var app = builder.Build();
