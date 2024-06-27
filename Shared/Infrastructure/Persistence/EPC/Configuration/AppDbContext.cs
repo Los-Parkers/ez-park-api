@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
-using ez_park_platform.Parkings.Domain.Model.Aggregates;
+using ez_park_platform.ParkingManagement.Domain.Model.Entities;
 using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions;
 using ez_park_platform.Users.Domain.Model.Aggregates;
 using ez_park_platform.Reservations.Domain.Model.Aggregates;
@@ -48,12 +48,10 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             parkingEntity.Property(p => p.Width).IsRequired();
             parkingEntity.Property(p => p.Length).IsRequired();
             parkingEntity.Property(p => p.Height).IsRequired();
-            parkingEntity.Property(p => p.MaxCapacity).IsRequired();
-            parkingEntity.Property(p => p.AvailableCapacity).IsRequired();
             parkingEntity.Property(p => p.Price).IsRequired();
-            parkingEntity.Property(p => p.Rating).IsRequired();
             parkingEntity.Property(p => p.Phone).IsRequired();
             parkingEntity.Property(p => p.Description).IsRequired();
+            parkingEntity.Property(p => p.UserId).IsRequired();
 
             //booking entity
             var bookingEntity = builder.Entity<Booking>();
@@ -66,6 +64,18 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             bookingEntity.Property(p => p.StartHour).IsRequired().HasMaxLength(8);
             bookingEntity.Property(p => p.EndHour).IsRequired().HasMaxLength(8);
             bookingEntity.Property(p => p.BookingStatus);
+            
+            //review entity
+            var reviewEntity = builder.Entity<Review>();
+            
+            reviewEntity.ToTable("Review");
+            reviewEntity.HasKey(r => r.Id);
+            reviewEntity.Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
+            reviewEntity.Property(r => r.Comment).IsRequired();
+            reviewEntity.Property(r => r.Rating).IsRequired();
+            reviewEntity.Property(r => r.ParkingId).IsRequired();
+            reviewEntity.Property(r => r.UserId).IsRequired();
+            
 
             builder.UseSnakeCaseWithPluralizedTableNamingConvention();
         }
