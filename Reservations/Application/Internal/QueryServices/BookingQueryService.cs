@@ -1,6 +1,4 @@
-﻿using ez_park_platform.Parkings.Domain.Model.Querys;
-using ez_park_platform.Parkings.Domain.Repositories;
-using ez_park_platform.Reservations.Domain.Model.Aggregates;
+﻿using ez_park_platform.Reservations.Domain.Model.Aggregates;
 using ez_park_platform.Reservations.Domain.Model.Querys;
 using ez_park_platform.Reservations.Domain.Repositories;
 using ez_park_platform.Reservations.Domain.Services;

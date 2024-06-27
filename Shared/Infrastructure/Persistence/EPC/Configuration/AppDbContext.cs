@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
-using ez_park_platform.Parkings.Domain.Model.Aggregates;
+using ez_park_platform.ParkingManagement.Domain.Model.Entities;
 using ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration.Extensions;
 using ez_park_platform.Users.Domain.Model.Aggregates;
 using ez_park_platform.Reservations.Domain.Model.Aggregates;
