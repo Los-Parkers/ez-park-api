@@ -51,5 +51,49 @@ namespace ez_park_platform.Reservations.Interfaces.REST
             BookingResource bookingResource = BookingResourceFromEntityAssembler.ToResourceFromEntity(booking);
             return Ok(bookingResource);
         }
+        
+        [HttpGet("userid/{userId}")]
+        public async Task<ActionResult> GetBookingByUserId(int userId)
+        {
+            try
+            {
+                List<Booking> bookings = await bookingQueryService.Handle(new GetBookingsByUserIdQuery(userId));
+                if (bookings == null || bookings.Count == 0)
+                {
+                    return NotFound($"No bookings found for user ID {userId}");
+                }
+
+                List<BookingResource> reviewResources = bookings.Select(BookingResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+                return Ok(reviewResources);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine(ex);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        
+        [HttpGet("parkingid/{parkingId}")]
+        public async Task<ActionResult> GetBookingByParkingId(int parkingId)
+        {
+            try
+            {
+                List<Booking> bookings = await bookingQueryService.Handle(new GetBookingsByParkingIdQuery(parkingId));
+                if (bookings == null || bookings.Count == 0)
+                {
+                    return NotFound($"No bookings found for parking ID {parkingId}");
+                }
+
+                List<BookingResource> bookingResources = bookings.Select(BookingResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+                return Ok(bookingResources);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine(ex);
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

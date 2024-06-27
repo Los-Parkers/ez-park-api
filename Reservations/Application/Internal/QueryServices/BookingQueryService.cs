@@ -16,5 +16,15 @@ namespace ez_park_platform.Reservations.Application.Internal.QueryServices
         {
             return await bookingRepository.FindByIdAsync(query.BookingId);
         }
+        
+        public async Task<List<Booking>> Handle(GetBookingsByUserIdQuery query)
+        {
+            return await bookingRepository.FindByUserIdAsync(query.UserId);
+        }
+        
+        public async Task<List<Booking>> Handle(GetBookingsByParkingIdQuery query)
+        {
+            return await bookingRepository.FindByParkingIdAsync(query.ParkingId);
+        }
     }
 }

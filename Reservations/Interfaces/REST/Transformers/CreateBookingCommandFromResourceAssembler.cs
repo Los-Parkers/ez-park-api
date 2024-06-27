@@ -6,6 +6,6 @@ namespace ez_park_platform.Reservations.Interfaces.REST.Transformers
     public static class CreateBookingCommandFromResourceAssembler
     {
         public static CreateBookingCommand ToCommandFromResource(CreateBookingResource resource) =>
-            new(resource.HoursRegistered, resource.TotalPrice, resource.StartHour, resource.EndHour);
+            new(resource.HoursRegistered, resource.TotalPrice, resource.StartHour, resource.EndHour,resource.BookingStatus, resource.ParkingId, resource.UserId);
     }
 }

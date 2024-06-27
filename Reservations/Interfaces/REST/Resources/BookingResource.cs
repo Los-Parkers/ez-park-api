@@ -1,4 +1,4 @@
 ﻿namespace ez_park_platform.Reservations.Interfaces.REST.Resources
 {
-    public record BookingResource(int Id, string HoursRegistered, double TotalPrice, string StartHour, string EndHour, string Review, double BookingRating, string BookingStatus);
+    public record BookingResource(int Id, int HoursRegistered, double TotalPrice, TimeSpan StartHour, TimeSpan EndHour, Boolean BookingStatus, int ParkingId, int UserId);
 }

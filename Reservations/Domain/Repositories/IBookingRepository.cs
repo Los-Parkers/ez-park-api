@@ -5,6 +5,8 @@ namespace ez_park_platform.Reservations.Domain.Repositories
 {
     public interface IBookingRepository : IBaseRepository<Booking>
     {
+        Task<List<Booking>> FindByUserIdAsync(int userid);
+        Task<List<Booking>> FindByParkingIdAsync(int parkingid);
 
     }
 }
