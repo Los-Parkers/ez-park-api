@@ -6,34 +6,35 @@ namespace ez_park_platform.Reservations.Domain.Model.Aggregates
     {
         public int Id { get; }
 
-        public string HoursRegistered { get; set; }
+        public int HoursRegistered { get; set; }
         public double TotalPrice { get; set; }
-        public string StartHour { get; set; }
-        public string EndHour { get; set; }
-        public string Review { get; set; }
-        public double BookingRating { get; set; }
-        public string BookingStatus { get; set;}
-
+        public TimeSpan StartHour { get; set; }
+        public TimeSpan EndHour { get; set; }
+        
+        public Boolean BookingStatus { get; set;}
+        public int ParkingId { get; set; }
+        public int UserId { get; set; }
+        
         protected Booking()
         {
-            this.HoursRegistered = string.Empty;
+            this.HoursRegistered = default;
             this.TotalPrice = default;
-            this.StartHour = string.Empty;
-            this.EndHour = string.Empty;
-            this.Review = string.Empty;
-            this.BookingRating = default;
-            this.BookingStatus = string.Empty;
+            this.StartHour = default;
+            this.EndHour = default;
+            this.BookingStatus = default;
+            this.ParkingId = default;
+            this.UserId = default;
         }
 
-        public Booking (CreateBookingCommand command)
+        public Booking(CreateBookingCommand command)
         {
             this.HoursRegistered = command.HoursRegistered;
             this.TotalPrice = command.TotalPrice;
             this.StartHour = command.StartHour;
             this.EndHour = command.EndHour;
-            this.Review = string.Empty;
-            this.BookingRating = default;
-            this.BookingStatus = "CREATED";
+            this.BookingStatus = command.BookingStatus;
+            this.ParkingId = command.ParkingId;
+            this.UserId = command.UserId;
         }
     }
 }

@@ -61,8 +61,10 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             bookingEntity.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             bookingEntity.Property(p => p.HoursRegistered).IsRequired();
             bookingEntity.Property(p => p.TotalPrice).IsRequired();
-            bookingEntity.Property(p => p.StartHour).IsRequired().HasMaxLength(8);
-            bookingEntity.Property(p => p.EndHour).IsRequired().HasMaxLength(8);
+            bookingEntity.Property(p => p.StartHour).IsRequired();
+            bookingEntity.Property(p => p.EndHour).IsRequired();
+            bookingEntity.Property(p => p.ParkingId).IsRequired();
+            bookingEntity.Property(p => p.UserId).IsRequired();
             bookingEntity.Property(p => p.BookingStatus);
             
             //review entity

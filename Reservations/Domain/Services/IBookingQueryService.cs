@@ -7,5 +7,7 @@ namespace ez_park_platform.Reservations.Domain.Services
     {
         Task<IEnumerable<Booking>> Handle(GetAllBookingsQuery query);
         Task<Booking?> Handle(GetBookingByIdQuery query);
+        Task<List<Booking>> Handle(GetBookingsByUserIdQuery query);
+        Task<List<Booking>> Handle(GetBookingsByParkingIdQuery query);
     }
 }
