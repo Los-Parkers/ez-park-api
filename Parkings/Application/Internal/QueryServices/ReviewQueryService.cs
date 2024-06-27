@@ -24,7 +24,7 @@ namespace ez_park_platform.EzPark.Application.Internal.QueryServices
         
         public async Task<List<Review>> Handle(GetReviewsByParkingIdQuery query)
         {
-            return await reviewRepository.FindByUserIdAsync(query.ParkingId);
+            return await reviewRepository.FindByParkingIdAsync(query.ParkingId);
         }
         
     }

@@ -40,6 +40,59 @@ namespace ez_park_platform.Parkings.Interfaces.REST
             }
         }
         
+        [HttpGet]
+        public async Task<ActionResult> GetAllReviews()
+        {
+            IEnumerable<Review> reviews = await reviewQueryService.Handle(new GetAllReviewsQuery());
+            IEnumerable<ReviewResource> reviewResource =
+                reviews.Select(ReviewResourceFromEntityAssembler.ToResourceFromEntity);
+            return Ok(reviewResource);
+        }
+        
+        [HttpGet("userid/{userId}")]
+        public async Task<ActionResult> GetReviewByUserId(int userId)
+        {
+            try
+            {
+                List<Review> reviews = await reviewQueryService.Handle(new GetReviewsByUserIdQuery(userId));
+                if (reviews == null || reviews.Count == 0)
+                {
+                    return NotFound($"No reviews found for user ID {userId}");
+                }
+
+                List<ReviewResource> reviewResources = reviews.Select(ReviewResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+                return Ok(reviewResources);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine(ex);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        
+        [HttpGet("parkingid/{parkingId}")]
+        public async Task<ActionResult> GetReviewByParkingId(int parkingId)
+        {
+            try
+            {
+                List<Review> reviews = await reviewQueryService.Handle(new GetReviewsByParkingIdQuery(parkingId));
+                if (reviews == null || reviews.Count == 0)
+                {
+                    return NotFound($"No reviews found for parking ID {parkingId}");
+                }
+
+                List<ReviewResource> reviewResources = reviews.Select(ReviewResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+                return Ok(reviewResources);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine(ex);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        
         [HttpGet("{id:int}")]
         public async Task<ActionResult> GetReviewById(int id)
         {
