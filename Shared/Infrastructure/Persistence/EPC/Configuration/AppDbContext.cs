@@ -64,6 +64,18 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Configuration
             bookingEntity.Property(p => p.StartHour).IsRequired().HasMaxLength(8);
             bookingEntity.Property(p => p.EndHour).IsRequired().HasMaxLength(8);
             bookingEntity.Property(p => p.BookingStatus);
+            
+            //review entity
+            var reviewEntity = builder.Entity<Review>();
+            
+            reviewEntity.ToTable("Review");
+            reviewEntity.HasKey(r => r.Id);
+            reviewEntity.Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
+            reviewEntity.Property(r => r.Comment).IsRequired();
+            reviewEntity.Property(r => r.Rating).IsRequired();
+            reviewEntity.Property(r => r.ParkingId).IsRequired();
+            reviewEntity.Property(r => r.UserId).IsRequired();
+            
 
             builder.UseSnakeCaseWithPluralizedTableNamingConvention();
         }

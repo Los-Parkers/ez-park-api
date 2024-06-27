@@ -79,10 +79,15 @@ builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
 builder.Services.AddScoped<IParkingCommandService, ParkingCommandService>();
 builder.Services.AddScoped<IParkingQueryService, ParkingQueryService>();
 
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewCommandService, ReviewCommandService>();
+builder.Services.AddScoped<IReviewQueryService, ReviewQueryService>();
+
 // Reservations Bounded Context Configuration
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingCommandService, BookingComandService>();
 builder.Services.AddScoped<IBookingQueryService, BookingQueryService>();
+
 
 //Configure database Context and Logging Levels
 var app = builder.Build();

@@ -53,7 +53,7 @@ namespace ez_park_platform.Parkings.Interfaces.REST
         {
             try
             {
-                List<Parking> parkings = await parkingQueryService.Handle(new GetParkingsByUserId(userId));
+                List<Parking> parkings = await parkingQueryService.Handle(new GetParkingsByUserIdQuery(userId));
                 if (parkings == null || parkings.Count == 0)
                 {
                     return NotFound($"No parkings found for user ID {userId}");

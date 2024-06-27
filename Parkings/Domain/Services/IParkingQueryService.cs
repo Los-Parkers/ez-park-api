@@ -7,7 +7,7 @@ namespace ez_park_platform.Parkings.Domain.Services
     {
         Task<IEnumerable<Parking>> Handle(GetAllParkingsQuery query);
         Task<Parking?> Handle(GetParkingByIdQuery query);
-        Task<List<Parking>> Handle(GetParkingsByUserId query);
+        Task<List<Parking>> Handle(GetParkingsByUserIdQuery query);
 
     }
 }

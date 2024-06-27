@@ -17,7 +17,7 @@ namespace ez_park_platform.EzPark.Application.Internal.QueryServices
             return await parkingRepository.FindByIdAsync(query.ParkingId);
         }
 
-        public async Task<List<Parking>> Handle(GetParkingsByUserId query)
+        public async Task<List<Parking>> Handle(GetParkingsByUserIdQuery query)
         {
             return await parkingRepository.FindByUserIdAsync(query.UserId);
         }
