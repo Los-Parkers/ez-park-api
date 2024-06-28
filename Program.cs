@@ -27,8 +27,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Add Connection String
+// Add Connection String
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Add CORS Policy
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", b =>
+{
+    b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
+
+
 
 builder.Services.AddDbContext<AppDbContext>(
     options =>
@@ -101,16 +109,16 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
