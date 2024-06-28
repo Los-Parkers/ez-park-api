@@ -14,6 +14,9 @@ namespace ez_park_platform.ParkingManagement.Domain.Model.Entities
         public double Price { get; set; }
         public string Phone { get; set; }
         public string Description { get; set; }
+
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         
         public int UserId { get; set; }
         
@@ -27,8 +30,9 @@ namespace ez_park_platform.ParkingManagement.Domain.Model.Entities
             this.Price = default;
             this.Phone = string.Empty;
             this.Description = string.Empty;
+            this.Latitude = default;
+            this.Longitude = default;
             this.UserId = default;
-
         }
 
         public Parking(CreateParkingCommand command)
@@ -40,6 +44,8 @@ namespace ez_park_platform.ParkingManagement.Domain.Model.Entities
             this.Price = command.Price;
             this.Phone = command.Phone;
             this.Description = command.Description;
+            this.Latitude = command.Latitude;
+            this.Longitude = command.Longitude;
             this.UserId = command.UserId;
         }
     }

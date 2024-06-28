@@ -6,6 +6,6 @@ namespace ez_park_platform.ParkingManagement.Interfaces.REST.Transformers
     public static class CreateParkingCommandFromResourceAssembler
     {
         public static CreateParkingCommand ToCommandFromResource(CreateParkingResource resource) =>
-            new(resource.Address, resource.Width, resource.Length, resource.Height,  resource.Price, resource.Phone, resource.Description, resource.UserId);
+            new(resource.Address, resource.Width, resource.Length, resource.Height,  resource.Price, resource.Phone, resource.Description, resource.Latitude, resource.Longitude, resource.UserId);
     }
 }
