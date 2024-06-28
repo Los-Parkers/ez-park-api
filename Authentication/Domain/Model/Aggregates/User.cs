@@ -1,7 +1,7 @@
-﻿using ez_park_platform.Users.Domain.Model.Commands;
-using ez_park_platform.Users.Domain.Model.ValueObjects;
+﻿using ez_park_platform.Authentication.Domain.Model.Commands;
+using ez_park_platform.Authentication.Domain.Model.ValueObjects;
 
-namespace ez_park_platform.Users.Domain.Model.Aggregates
+namespace ez_park_platform.Authentication.Domain.Model.Aggregates
 {
     public partial class User
     {

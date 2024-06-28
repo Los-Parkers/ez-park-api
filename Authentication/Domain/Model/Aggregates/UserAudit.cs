@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ez_park_platform.Users.Domain.Model.Aggregates
+namespace ez_park_platform.Authentication.Domain.Model.Aggregates
 {
     public partial class UserAudit
     {

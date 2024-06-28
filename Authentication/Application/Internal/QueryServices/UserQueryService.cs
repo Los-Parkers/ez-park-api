@@ -1,7 +1,7 @@
-﻿using ez_park_platform.Users.Domain.Model.Aggregates;
-using ez_park_platform.Users.Domain.Model.Querys;
-using ez_park_platform.Users.Domain.Repositories;
-using ez_park_platform.Users.Domain.Services;
+﻿using ez_park_platform.Authentication.Domain.Model.Aggregates;
+using ez_park_platform.Authentication.Domain.Model.Querys;
+using ez_park_platform.Authentication.Domain.Repositories;
+using ez_park_platform.Authentication.Domain.Services;
 
 namespace ez_park_platform.EzPark.Application.Internal.QueryServices
 {
@@ -20,6 +20,11 @@ namespace ez_park_platform.EzPark.Application.Internal.QueryServices
         public async Task<User?> Handle(GetUserByDniQuery query)
         {
             return await userRepository.FindByDniAsync(query.Dni);
+        }
+
+        public async Task<User?> Handle(GetUserByEmailAndPassword query)
+        {
+            return await userRepository.FindByEmailAndPasswordAsync(query.Email, query.Password);
         }
     }
 }

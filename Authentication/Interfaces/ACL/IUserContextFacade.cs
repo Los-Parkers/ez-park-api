@@ -1,4 +1,4 @@
-﻿using ez_park_platform.Users.Domain.Model.Aggregates;
+﻿using ez_park_platform.Authentication.Domain.Model.Aggregates;
 
 namespace ez_park_platform.Authentication.Interfaces.ACL
 {

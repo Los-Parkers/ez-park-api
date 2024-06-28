@@ -1,15 +1,15 @@
 ﻿using ez_park_platform.Authentication.Domain.Model.Commands;
-using ez_park_platform.Users.Domain.Model.Aggregates;
-using ez_park_platform.Users.Domain.Model.Commands;
-using ez_park_platform.Users.Domain.Model.Querys;
-using ez_park_platform.Users.Domain.Repositories;
-using ez_park_platform.Users.Domain.Services;
-using ez_park_platform.Users.Interfaces.REST.Resources;
-using ez_park_platform.Users.Interfaces.REST.Transformers;
+using ez_park_platform.Authentication.Domain.Model.Aggregates;
+using ez_park_platform.Authentication.Domain.Model.Commands;
+using ez_park_platform.Authentication.Domain.Model.Querys;
+using ez_park_platform.Authentication.Domain.Repositories;
+using ez_park_platform.Authentication.Domain.Services;
+using ez_park_platform.Authentication.Interfaces.REST.Resources;
+using ez_park_platform.Authentication.Interfaces.REST.Transformers;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
-namespace ez_park_platform.Users.Interfaces.REST
+namespace ez_park_platform.Authentication.Interfaces.REST
 {
     [ApiController]
     [Route("api/v1/[controller]")]
@@ -50,6 +50,16 @@ namespace ez_park_platform.Users.Interfaces.REST
         public async Task<ActionResult> GetUserById(int id)
         {
             User? user = await userQueryService.Handle(new GetUserByIdQuery(id));
+            if (user is null) return NotFound();
+
+            UserResource userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);
+            return Ok(userResource);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> GetUserByEmailAndPassword([FromBody] LoginResource resource)
+        {
+            User? user = await userQueryService.Handle(new GetUserByEmailAndPassword(resource.Email, resource.Password));
             if (user is null) return NotFound();
 
             UserResource userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);

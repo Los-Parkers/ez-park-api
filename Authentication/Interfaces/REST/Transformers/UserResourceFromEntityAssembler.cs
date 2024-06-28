@@ -1,7 +1,7 @@
-﻿using ez_park_platform.Users.Domain.Model.Aggregates;
-using ez_park_platform.Users.Interfaces.REST.Resources;
+﻿using ez_park_platform.Authentication.Domain.Model.Aggregates;
+using ez_park_platform.Authentication.Interfaces.REST.Resources;
 
-namespace ez_park_platform.Users.Interfaces.REST.Transformers
+namespace ez_park_platform.Authentication.Interfaces.REST.Transformers
 {
     public static class UserResourceFromEntityAssembler
     {

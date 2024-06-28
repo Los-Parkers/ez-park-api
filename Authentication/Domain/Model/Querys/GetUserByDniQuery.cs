@@ -1,4 +1,4 @@
-﻿namespace ez_park_platform.Users.Domain.Model.Querys
+﻿namespace ez_park_platform.Authentication.Domain.Model.Querys
 {
     public record GetUserByDniQuery(string Dni);
 }

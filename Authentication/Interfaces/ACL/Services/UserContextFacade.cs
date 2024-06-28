@@ -1,7 +1,7 @@
-﻿using ez_park_platform.Users.Domain.Model.Aggregates;
-using ez_park_platform.Users.Domain.Model.Commands;
-using ez_park_platform.Users.Domain.Model.Querys;
-using ez_park_platform.Users.Domain.Services;
+﻿using ez_park_platform.Authentication.Domain.Model.Aggregates;
+using ez_park_platform.Authentication.Domain.Model.Commands;
+using ez_park_platform.Authentication.Domain.Model.Querys;
+using ez_park_platform.Authentication.Domain.Services;
 
 namespace ez_park_platform.Authentication.Interfaces.ACL.Services
 {

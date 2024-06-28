@@ -1,4 +1,4 @@
-﻿namespace ez_park_platform.Users.Domain.Model.ValueObjects
+﻿namespace ez_park_platform.Authentication.Domain.Model.ValueObjects
 {
     public record UserName(string FirstName, string LastName)
     {
