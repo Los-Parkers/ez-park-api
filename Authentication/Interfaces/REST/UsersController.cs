@@ -1,5 +1,8 @@
-﻿using ez_park_platform.Users.Domain.Model.Aggregates;
+﻿using ez_park_platform.Authentication.Domain.Model.Commands;
+using ez_park_platform.Users.Domain.Model.Aggregates;
+using ez_park_platform.Users.Domain.Model.Commands;
 using ez_park_platform.Users.Domain.Model.Querys;
+using ez_park_platform.Users.Domain.Repositories;
 using ez_park_platform.Users.Domain.Services;
 using ez_park_platform.Users.Interfaces.REST.Resources;
 using ez_park_platform.Users.Interfaces.REST.Transformers;
@@ -51,6 +54,16 @@ namespace ez_park_platform.Users.Interfaces.REST
 
             UserResource userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);
             return Ok(userResource);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            bool deleted = await userCommandService.Handle(new DeleteUserCommand(id));
+
+            if (!deleted) return NotFound();
+
+            return Ok();
         }
     }
 }

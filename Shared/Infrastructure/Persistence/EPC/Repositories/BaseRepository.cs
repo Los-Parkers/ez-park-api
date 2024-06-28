@@ -28,9 +28,14 @@ namespace ez_park_platform.Shared.Infrastructure.Persistence.EPC.Repositories
             Context.Set<TEntity>().Update(entity);
         }
 
-        public void Remove(TEntity entity)
+        public void RemoveById(int id)
         {
-            Context.Set<TEntity>().Remove(entity);
+            TEntity? entity = Context.Set<TEntity>()
+                .Find(id);
+
+            if (entity is not null){
+                Context.Set<TEntity>().Remove(entity);
+            }
         }
 
         public async Task<IEnumerable<TEntity>> ListAsync()
